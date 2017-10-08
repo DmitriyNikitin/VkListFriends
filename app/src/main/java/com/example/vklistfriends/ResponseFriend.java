@@ -18,6 +18,7 @@ public class ResponseFriend {
 
 
         public ArrayList<ResponseModel> getFriends(){
+
                 return friends;
         }
 }

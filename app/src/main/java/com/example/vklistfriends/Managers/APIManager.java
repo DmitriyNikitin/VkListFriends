@@ -1,5 +1,6 @@
 package com.example.vklistfriends.Managers;
 
+
 import com.example.vklistfriends.RequestInterface;
 
 import okhttp3.OkHttpClient;
@@ -14,18 +15,19 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class APIManager {
 
     private final String baseURL = "https://api.vk.com/";
-    private static  APIManager instance;
+    private static APIManager instance;
 
     private final RequestInterface requestInterface;
 
-    public static APIManager getInstance(){
-        if(instance == null){
+
+    public static APIManager getInstance() {
+        if (instance == null) {
             instance = new APIManager();
         }
-            return instance;
+        return instance;
     }
 
-    private APIManager(){
+    private APIManager() {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
@@ -39,9 +41,12 @@ public class APIManager {
 
         this.requestInterface = api.create(RequestInterface.class);
 
+
     }
 
-    public RequestInterface getRequestInterface(){
+    public RequestInterface getRequestInterface() {
         return requestInterface;
     }
+
+
 }

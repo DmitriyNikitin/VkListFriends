@@ -2,6 +2,7 @@ package com.example.vklistfriends;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.View;
 import android.webkit.WebView;
@@ -54,25 +55,11 @@ public class CustomWebViewClient extends WebViewClient {
             //// TODO: 08.09.2017 создать authmanager
             AuthManager authManager = new AuthManager(activity);
             //сохранить токен в authManadger
-            authManager.saveToken(access_token);
-            activity.webView.setVisibility(View.INVISIBLE);
+            authManager.saveToken(accessToken);
 
-            FriendsManager friendsManager = new FriendsManager(accessToken);
+            Intent intent = new Intent(activity, FriendListActivity.class);
+            activity.startActivity(intent);
 
-            friendsManager.fetch(new FriendsInterface() {
-                @Override
-                public void ifSuccess(ArrayList<ResponseModel> responseModels) {
-
-                CustomListAdapter customListAdapter = new CustomListAdapter(activity, responseModels);
-                 activity.listView.setAdapter(customListAdapter);
-                Toast.makeText(activity, "Запрос прошел", Toast.LENGTH_LONG).show();
-                }
-
-                @Override
-                public void ifFailed() {
-                    Toast.makeText(activity, "Провал", Toast.LENGTH_LONG).show();
-                }
-            });
             return true;
         }
 

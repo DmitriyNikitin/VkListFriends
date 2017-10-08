@@ -16,6 +16,7 @@ public class AuthManager {
 
     public String authManager = "auth";
 
+    public AuthManager(){}
     public AuthManager(Activity cnt){
 
         sPref = cnt.getSharedPreferences(authManager, Context.MODE_PRIVATE);

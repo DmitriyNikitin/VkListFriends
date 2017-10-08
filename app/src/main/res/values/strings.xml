@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">VkListFriends</string>
+    <string name="action_exit">Exit</string>
 </resources>

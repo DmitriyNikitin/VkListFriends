@@ -1,6 +1,12 @@
 package com.example.vklistfriends.Managers;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+
 import com.example.vklistfriends.FriendsInterface;
+import com.example.vklistfriends.PhotoFriends.PhotoInterface;
+import com.example.vklistfriends.PhotoFriends.PhotoModel;
+import com.example.vklistfriends.PhotoFriends.ResponsePhoto;
 import com.example.vklistfriends.ResponseFriend;
 import com.example.vklistfriends.ResponseModel;
 
@@ -21,10 +27,12 @@ public class FriendsManager {
             fields = "photo_100",
             order = "name";
 
-
+    private ArrayList<ResponseModel> arrayInfoFriends;
+    private ArrayList<PhotoModel> arrayInfoPhoto;
     public  FriendsManager(String token){
         this.accessToken = token;
     }
+    public  FriendsManager(){}
 
 
 
@@ -36,14 +44,34 @@ public class FriendsManager {
             public void onResponse(Call<ResponseFriend> call, Response<ResponseFriend> response) {
 
                 ResponseFriend friend = response.body();
-                ArrayList<ResponseModel> arrayList = friend.getFriends();
-                friendsInterface.ifSuccess(arrayList);
+                arrayInfoFriends = friend.getFriends();
+                friendsInterface.ifSuccess(arrayInfoFriends);
             }
 
             @Override
             public void onFailure(Call<ResponseFriend> call, Throwable t) {
                 friendsInterface.ifFailed();
+}
+        });
+                }
+
+
+    public void getPhotoFriend(Integer ownerId, String albumId, Integer rev, final PhotoInterface photoInterface){
+
+        APIManager.getInstance().getRequestInterface().getPhoto(ownerId, albumId, rev).enqueue(new Callback<ResponsePhoto>() {
+            @Override
+            public void onResponse(Call<ResponsePhoto> call, Response<ResponsePhoto> response) {
+                ResponsePhoto foto = response.body();
+                arrayInfoPhoto = foto.getPhoto();
+                photoInterface.ifSuccess(arrayInfoPhoto);
+            }
+
+            @Override
+            public void onFailure(Call<ResponsePhoto> call, Throwable t) {
+                photoInterface.ifFailed();
             }
         });
+
     }
+
 }

@@ -1,10 +1,5 @@
 package com.example.vklistfriends;
 
-
-/**
- * Created by админ on 12.09.2017.
- */
-
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,25 +7,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.vklistfriends.PhotoFriends.PhotoModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-
 /**
-     * Created by админ on 28.07.2017.
-     */
+ * Created by админ on 08.10.2017.
+ */
 
-    public class CustomListAdapter extends BaseAdapter {
+public class PhotoAdapter extends BaseAdapter {
 
     Context context;
     LayoutInflater lInflater;
-    ArrayList<ResponseModel> list;
+    ArrayList<PhotoModel> list;
 
-    CustomListAdapter(Context context, ArrayList<ResponseModel> list) {
+    PhotoAdapter(Context context, ArrayList<PhotoModel> list) {
         this.context = context;
         this.list = list;
 
@@ -54,28 +47,22 @@ import java.util.ArrayList;
         return position;
     }
 
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
         View view = convertView;
         if (view == null) {
-            view = lInflater.inflate(R.layout.item, parent, false);
+            view = lInflater.inflate(R.layout.photo_item, parent, false);
         }
 
-        ResponseModel model = getModel(position);
+        PhotoModel model = getModel(position);
 
-
-        Picasso.with(context).load(model.photo100).into((ImageView) view.findViewById(R.id.imageView));
-
-        ((TextView) view.findViewById(R.id.name)).setText(" " + model.firstName +" " + model.lastName);
+        Picasso.with(context).load(model.srcBig).into((ImageView) view.findViewById(R.id.imagePhoto));
 
         return view;
     }
 
-     ResponseModel getModel(int position) {
-        return ((ResponseModel) getItem(position));
+    PhotoModel getModel(int position) {
+        return ((PhotoModel) getItem(position));
     }
-
-
-
 }

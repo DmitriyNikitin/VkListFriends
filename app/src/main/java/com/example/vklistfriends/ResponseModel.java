@@ -9,9 +9,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class ResponseModel {
 
-    @SerializedName("id")
+    @SerializedName("uid")
     @Expose
-    public Integer id;
+    public Integer uid;
     @SerializedName("first_name")
     @Expose
     public String firstName;

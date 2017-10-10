@@ -1,5 +1,6 @@
-package com.example.vklistfriends;
+package com.example.vklistfriends.FriendsActivity;
 
+import com.example.vklistfriends.Models.ResponseModel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

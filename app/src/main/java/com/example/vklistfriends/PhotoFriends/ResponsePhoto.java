@@ -1,6 +1,6 @@
 package com.example.vklistfriends.PhotoFriends;
 
-import com.example.vklistfriends.ResponseModel;
+import com.example.vklistfriends.Models.PhotoModel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

@@ -1,6 +1,4 @@
-package com.example.vklistfriends;
-
-import android.webkit.WebView;
+package com.example.vklistfriends.MainActivity;
 
 /**
  * Created by админ on 01.10.2017.

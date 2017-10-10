@@ -1,7 +1,9 @@
-package com.example.vklistfriends.PhotoFriends;
+package com.example.vklistfriends.Models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
 
 /**
  * Created by админ on 02.10.2017.
@@ -45,4 +47,7 @@ public class PhotoModel {
     @Expose
     public Integer created;
 
+    @SerializedName("sizes")
+    @Expose
+    public ArrayList<SizeModel> sizes;
 }

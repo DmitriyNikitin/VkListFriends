@@ -1,11 +1,11 @@
 package com.example.vklistfriends;
 
+import com.example.vklistfriends.FriendsActivity.ResponseFriend;
 import com.example.vklistfriends.PhotoFriends.ResponsePhoto;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 /**
@@ -27,7 +27,8 @@ public interface RequestInterface {
     Call<ResponsePhoto> getPhoto(
             @Field("owner_id")Integer owner_id,
             @Field("album_id")String album_id,
-            @Field("rev")Integer rev
+            @Field("rev")Integer rev,
+            @Field("photo_sizes")Integer photoSizes
     );
 
 }

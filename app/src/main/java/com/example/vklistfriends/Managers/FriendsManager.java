@@ -1,17 +1,13 @@
 package com.example.vklistfriends.Managers;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
-
-import com.example.vklistfriends.FriendsInterface;
+import com.example.vklistfriends.FriendsActivity.FriendsInterface;
 import com.example.vklistfriends.PhotoFriends.PhotoInterface;
-import com.example.vklistfriends.PhotoFriends.PhotoModel;
+import com.example.vklistfriends.Models.PhotoModel;
 import com.example.vklistfriends.PhotoFriends.ResponsePhoto;
-import com.example.vklistfriends.ResponseFriend;
-import com.example.vklistfriends.ResponseModel;
+import com.example.vklistfriends.FriendsActivity.ResponseFriend;
+import com.example.vklistfriends.Models.ResponseModel;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -56,9 +52,9 @@ public class FriendsManager {
                 }
 
 
-    public void getPhotoFriend(Integer ownerId, String albumId, Integer rev, final PhotoInterface photoInterface){
+    public void getPhotoFriend(Integer ownerId, String albumId, Integer rev, Integer photoSizes, final PhotoInterface photoInterface){
 
-        APIManager.getInstance().getRequestInterface().getPhoto(ownerId, albumId, rev).enqueue(new Callback<ResponsePhoto>() {
+        APIManager.getInstance().getRequestInterface().getPhoto(ownerId, albumId, rev, photoSizes).enqueue(new Callback<ResponsePhoto>() {
             @Override
             public void onResponse(Call<ResponsePhoto> call, Response<ResponsePhoto> response) {
                 ResponsePhoto foto = response.body();

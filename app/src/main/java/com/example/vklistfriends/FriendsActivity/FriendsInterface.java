@@ -1,4 +1,6 @@
-package com.example.vklistfriends;
+package com.example.vklistfriends.FriendsActivity;
+
+import com.example.vklistfriends.Models.ResponseModel;
 
 import java.util.ArrayList;
 

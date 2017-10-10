@@ -1,4 +1,4 @@
-package com.example.vklistfriends;
+package com.example.vklistfriends.Models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

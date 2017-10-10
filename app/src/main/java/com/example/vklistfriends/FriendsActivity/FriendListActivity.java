@@ -1,9 +1,8 @@
-package com.example.vklistfriends;
+package com.example.vklistfriends.FriendsActivity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -11,6 +10,9 @@ import android.widget.Toast;
 
 import com.example.vklistfriends.Managers.AuthManager;
 import com.example.vklistfriends.Managers.FriendsManager;
+import com.example.vklistfriends.Models.ResponseModel;
+import com.example.vklistfriends.PhotoActivity.PhotoListActivity;
+import com.example.vklistfriends.R;
 
 import java.util.ArrayList;
 

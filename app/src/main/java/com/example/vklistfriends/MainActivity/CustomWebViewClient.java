@@ -1,26 +1,15 @@
-package com.example.vklistfriends;
+package com.example.vklistfriends.MainActivity;
 
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Toast;
 
-import com.example.vklistfriends.Managers.APIManager;
+import com.example.vklistfriends.FriendsActivity.FriendListActivity;
 import com.example.vklistfriends.Managers.AuthManager;
-import com.example.vklistfriends.Managers.FriendsManager;
 
-import java.util.ArrayList;
 import java.util.StringTokenizer;
-
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
  * Created by админ on 01.10.2017.

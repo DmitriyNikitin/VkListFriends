@@ -1,6 +1,6 @@
 package com.example.vklistfriends.PhotoFriends;
 
-import com.example.vklistfriends.ResponseModel;
+import com.example.vklistfriends.Models.PhotoModel;
 
 import java.util.ArrayList;
 

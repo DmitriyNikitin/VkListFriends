@@ -1,4 +1,4 @@
-package com.example.vklistfriends;
+package com.example.vklistfriends.PhotoActivity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +8,8 @@ import android.widget.Toast;
 
 import com.example.vklistfriends.Managers.FriendsManager;
 import com.example.vklistfriends.PhotoFriends.PhotoInterface;
-import com.example.vklistfriends.PhotoFriends.PhotoModel;
+import com.example.vklistfriends.Models.PhotoModel;
+import com.example.vklistfriends.R;
 
 import java.util.ArrayList;
 
@@ -17,7 +18,7 @@ public class PhotoListActivity extends AppCompatActivity {
     Integer ownerId;
     String albumId = "profile";
     Integer rev = 1;
-
+    Integer photoSizes = 1;
     GridView grid;
 
     @Override
@@ -31,11 +32,15 @@ public class PhotoListActivity extends AppCompatActivity {
 
         ownerId = intent.getIntExtra("ownerId", 0);
 
-        fM.getPhotoFriend(ownerId, albumId, rev, new PhotoInterface() {
+        fM.getPhotoFriend(ownerId, albumId, rev, photoSizes, new PhotoInterface() {
             @Override
             public void ifSuccess(ArrayList<PhotoModel> arrayList) {
-                PhotoAdapter photoAdapter = new PhotoAdapter(PhotoListActivity.this , arrayList);
-                grid.setAdapter(photoAdapter);
+                if (arrayList == null) {
+                        Toast.makeText(PhotoListActivity.this, "У данного пользователя нет фотографий.", Toast.LENGTH_LONG).show();
+                } else {
+                    PhotoAdapter photoAdapter = new PhotoAdapter(PhotoListActivity.this, arrayList);
+                    grid.setAdapter(photoAdapter);
+                }
             }
 
             @Override

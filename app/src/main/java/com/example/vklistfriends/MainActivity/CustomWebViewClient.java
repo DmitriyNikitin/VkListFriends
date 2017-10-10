@@ -8,6 +8,7 @@ import android.webkit.WebViewClient;
 
 import com.example.vklistfriends.FriendsActivity.FriendListActivity;
 import com.example.vklistfriends.Managers.AuthManager;
+import com.example.vklistfriends.Managers.AuthManagerRealm;
 
 import java.util.StringTokenizer;
 
@@ -43,8 +44,9 @@ public class CustomWebViewClient extends WebViewClient {
 
             //// TODO: 08.09.2017 создать authmanager
             AuthManager authManager = new AuthManager(activity);
+            AuthManagerRealm authManagerRealm = new AuthManagerRealm();
             //сохранить токен в authManadger
-            authManager.saveToken(accessToken);
+            authManagerRealm.setToken(accessToken);
 
             Intent intent = new Intent(activity, FriendListActivity.class);
             activity.startActivity(intent);

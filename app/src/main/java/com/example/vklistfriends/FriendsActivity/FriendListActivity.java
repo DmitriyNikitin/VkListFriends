@@ -16,19 +16,22 @@ import com.example.vklistfriends.R;
 
 import java.util.ArrayList;
 
+import io.realm.Realm;
+
 public class FriendListActivity extends AppCompatActivity{
 
 
     ListView listView;
     ArrayList<ResponseModel> infoList;
-
+    Realm realm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_friend);
 
+        realm.init(this);
         listView = (ListView) findViewById(R.id.listFriend);
-        AuthManager aM = new AuthManager(this);
+        AuthManager aM = new AuthManager();
 
         FriendsManager fM = new FriendsManager(aM.getToken());
 

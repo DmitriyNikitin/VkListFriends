@@ -9,6 +9,7 @@ import com.example.vklistfriends.Models.ResponseModel;
 
 import java.util.ArrayList;
 
+import io.realm.Realm;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -23,8 +24,10 @@ public class FriendsManager {
             fields = "photo_100",
             order = "name";
 
+
     private ArrayList<ResponseModel> arrayInfoFriends;
     private ArrayList<PhotoModel> arrayInfoPhoto;
+
     public  FriendsManager(String token){
         this.accessToken = token;
     }
@@ -41,6 +44,8 @@ public class FriendsManager {
 
                 ResponseFriend friend = response.body();
                 arrayInfoFriends = friend.getFriends();
+                RealmManager rM = new RealmManager();
+                rM.saveFriends(arrayInfoFriends);
                 friendsInterface.ifSuccess(arrayInfoFriends);
             }
 

@@ -8,7 +8,6 @@ import android.webkit.WebView;
 
 import com.example.vklistfriends.FriendsActivity.FriendListActivity;
 import com.example.vklistfriends.Managers.AuthManager;
-import com.example.vklistfriends.Managers.AuthManagerRealm;
 import com.example.vklistfriends.R;
 
 import io.realm.Realm;
@@ -18,23 +17,20 @@ public class MainActivity extends AppCompatActivity {
 
     WebView webView;
     String token;
-    Realm mRealm;
 
-    @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Realm.getInstance(this);
-        mRealm = Realm.getInstance(MainActivity.this);
+        Realm.init(this);
 
-        AuthManagerRealm aMR = mRealm.createObject(AuthManagerRealm.class);
 
 
         webView = (WebView) findViewById(R.id.web);
 
-        AuthManager aM = new AuthManager(this);
+        AuthManager aM = new AuthManager();
 
-        token = aMR.getToken();
+        token = aM.getToken();
 
         if ( token != null) {
             Intent intent = new Intent(this, FriendListActivity.class);
@@ -50,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
 
         super.onDestroy();
 
-        mRealm.close();
 
     }
 }

@@ -65,8 +65,9 @@ import java.util.ArrayList;
 
         ResponseModel model = getModel(position);
 
-
-        Picasso.with(context).load(model.photo100).into((ImageView) view.findViewById(R.id.imageView));
+        if(model.photo100 != null) {
+            Picasso.with(context).load(model.photo100).into((ImageView) view.findViewById(R.id.imageView));
+        }
 
         ((TextView) view.findViewById(R.id.name)).setText(" " + model.firstName +" " + model.lastName);
 

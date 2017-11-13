@@ -9,6 +9,6 @@ import java.util.ArrayList;
  */
 
 public interface PhotoInterface {
-    void ifSuccess(ArrayList<PhotoModel> arrayList);
-    void ifFailed();
+    void onSuccess(ArrayList<PhotoModel> arrayList);
+    void onFailed();
 }

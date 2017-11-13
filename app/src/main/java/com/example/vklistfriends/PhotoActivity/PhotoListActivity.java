@@ -34,7 +34,7 @@ public class PhotoListActivity extends AppCompatActivity {
 
         fM.getPhotoFriend(ownerId, albumId, rev, photoSizes, new PhotoInterface() {
             @Override
-            public void ifSuccess(ArrayList<PhotoModel> arrayList) {
+            public void onSuccess(ArrayList<PhotoModel> arrayList) {
                 if (arrayList == null) {
                         Toast.makeText(PhotoListActivity.this, "У данного пользователя нет фотографий.", Toast.LENGTH_LONG).show();
                 } else {
@@ -44,7 +44,7 @@ public class PhotoListActivity extends AppCompatActivity {
             }
 
             @Override
-            public void ifFailed() {
+            public void onFailed() {
             }
         });
 }

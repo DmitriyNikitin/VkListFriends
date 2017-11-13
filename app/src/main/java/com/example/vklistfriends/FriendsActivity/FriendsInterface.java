@@ -9,6 +9,7 @@ import java.util.ArrayList;
  */
 
 public interface FriendsInterface {
-    void ifSuccess(ArrayList<ResponseModel> arrayList);
-    void ifFailed();
+    void basaStore (ArrayList<ResponseModel> arrayList);
+    void onSuccess(ArrayList<ResponseModel> arrayList);
+    void onFailed();
 }

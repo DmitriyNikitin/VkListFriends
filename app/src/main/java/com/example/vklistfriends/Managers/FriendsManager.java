@@ -35,27 +35,34 @@ public class FriendsManager {
 
 
 
-    public void fetch(final FriendsInterface friendsInterface){
+    public void fetch(final FriendsInterface friendsInterface) {
+        final RealmManager rM = new RealmManager();
+        //получить из базы вех друзей и вернуть их в frendinterface если больше нуля
+        if (rM.getFriends().size() != 0) ;
+        {
+            friendsInterface.basaStore(rM.getFriends());
 
+        }
 
-        APIManager.getInstance().getRequestInterface().getCall( accessToken, fields, order).enqueue(new Callback<ResponseFriend>() {
+        APIManager.getInstance().getRequestInterface().getCall(accessToken, fields, order).enqueue(new Callback<ResponseFriend>() {
             @Override
             public void onResponse(Call<ResponseFriend> call, Response<ResponseFriend> response) {
 
                 ResponseFriend friend = response.body();
                 arrayInfoFriends = friend.getFriends();
-                RealmManager rM = new RealmManager();
+                //удалть базу данных всех друзей
+                rM.deleteBaseFriends();
                 rM.saveFriends(arrayInfoFriends);
-                friendsInterface.ifSuccess(arrayInfoFriends);
+                friendsInterface.onSuccess(arrayInfoFriends);
             }
 
             @Override
             public void onFailure(Call<ResponseFriend> call, Throwable t) {
-                friendsInterface.ifFailed();
-}
-        });
-                }
+                friendsInterface.onFailed();
 
+            }
+        });
+    }
 
     public void getPhotoFriend(Integer ownerId, String albumId, Integer rev, Integer photoSizes, final PhotoInterface photoInterface){
 
@@ -64,12 +71,12 @@ public class FriendsManager {
             public void onResponse(Call<ResponsePhoto> call, Response<ResponsePhoto> response) {
                 ResponsePhoto foto = response.body();
                 arrayInfoPhoto = foto.getPhoto();
-                photoInterface.ifSuccess(arrayInfoPhoto);
+                photoInterface.onSuccess(arrayInfoPhoto);
             }
 
             @Override
             public void onFailure(Call<ResponsePhoto> call, Throwable t) {
-                photoInterface.ifFailed();
+                photoInterface.onFailed();
             }
         });
 

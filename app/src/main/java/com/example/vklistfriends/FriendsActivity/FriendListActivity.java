@@ -23,13 +23,12 @@ public class FriendListActivity extends AppCompatActivity{
 
     ListView listView;
     ArrayList<ResponseModel> infoList;
-    Realm realm;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_friend);
 
-        realm.init(this);
         listView = (ListView) findViewById(R.id.listFriend);
         AuthManager aM = new AuthManager();
 
@@ -37,14 +36,21 @@ public class FriendListActivity extends AppCompatActivity{
 
         fM.fetch(new FriendsInterface() {
             @Override
-            public void ifSuccess(ArrayList<ResponseModel> arrayList) {
+            public void basaStore(ArrayList<ResponseModel> arrayList) {
                 infoList = arrayList;
                 CustomListAdapter cLA = new CustomListAdapter(FriendListActivity.this, arrayList);
                 listView.setAdapter(cLA);
             }
 
             @Override
-            public void ifFailed() {
+            public void onSuccess(ArrayList<ResponseModel> arrayList) {
+                infoList = arrayList;
+                CustomListAdapter cLA = new CustomListAdapter(FriendListActivity.this, arrayList);
+                listView.setAdapter(cLA);
+            }
+
+            @Override
+            public void onFailed() {
                 Toast.makeText(FriendListActivity.this, "Проверьте соединение с сетью!", Toast.LENGTH_LONG).show();
             }
         });

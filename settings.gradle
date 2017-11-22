@@ -1,1 +1,1 @@
-include ':app', ':fragments', ':screenbrightness', ':auth18+'
+include ':app', ':fragments', ':screenbrightness', ':auth18+', ':appfragments'

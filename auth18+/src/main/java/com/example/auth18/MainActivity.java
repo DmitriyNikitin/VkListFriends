@@ -33,13 +33,12 @@ public class MainActivity extends AppCompatActivity {
                 int year, month, dayOfMonth;
                 final Calendar realTime;
                 final Calendar maxDayBirthday;
-                long maxDayBirthdayMili;
+
                 realTime = Calendar.getInstance();
                 maxDayBirthday = Calendar.getInstance();
 
                 year = realTime.get(Calendar.YEAR) - 18;
                 maxDayBirthday.set(Calendar.YEAR, realTime.get(Calendar.YEAR) - 18);
-                maxDayBirthdayMili = maxDayBirthday.getTime().getTime();
                 month = realTime.get(Calendar.MONTH);
                 dayOfMonth = realTime.get(Calendar.DAY_OF_MONTH);
 
@@ -49,28 +48,17 @@ public class MainActivity extends AppCompatActivity {
 
                         date = Calendar.getInstance();
                         date.set(year, month, dayOfMonth);
-                        if (date.compareTo(maxDayBirthday) == -1) {
+                            if(!date.after(maxDayBirthday)){
                             String dateText = new SimpleDateFormat("yyyy / MM / dd").format(MainActivity.this.date.getTime());
                             signUpProfileBirthdayEditText.setText(dateText);
+                            }else {
+                                Toast.makeText(MainActivity.this, "Вам должно быть не менее 18 лет", Toast.LENGTH_SHORT).show();
+                            }
 
-                        }
                     }
                 }, year, month, dayOfMonth);
-   /*           datePickerDialog.setButton(DialogInterface.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener(){
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                        if(!date.after(maxDayBirthday))
-                        {
-
-                        }
-                    }
-                });
-            */
-
-                datePickerDialog.getDatePicker().setMaxDate(maxDayBirthdayMili);
+                datePickerDialog.getDatePicker().setMaxDate(maxDayBirthday.getTimeInMillis());
                 datePickerDialog.show();
-
                 }
 
 

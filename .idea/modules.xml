@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/VkListFriends.iml" filepath="$PROJECT_DIR$/VkListFriends.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/appfragments/appfragments.iml" filepath="$PROJECT_DIR$/appfragments/appfragments.iml" />
       <module fileurl="file://$PROJECT_DIR$/auth18+/auth18+.iml" filepath="$PROJECT_DIR$/auth18+/auth18+.iml" />
       <module fileurl="file://$PROJECT_DIR$/fragments/fragments.iml" filepath="$PROJECT_DIR$/fragments/fragments.iml" />
       <module fileurl="file://$PROJECT_DIR$/screenbrightness/screenbrightness.iml" filepath="$PROJECT_DIR$/screenbrightness/screenbrightness.iml" />

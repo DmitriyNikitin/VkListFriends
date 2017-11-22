@@ -16,7 +16,7 @@ import android.widget.Button;
  */
 
 public class NavigationFragment extends Fragment{
-    NavigationFragment navigationFragment;
+
     View view;
     Button callBtn;
     Button favoriteBtn;
@@ -31,53 +31,33 @@ public class NavigationFragment extends Fragment{
         favoriteBtn = (Button)view.findViewById(R.id.favorite);
         groupBtn = (Button)view.findViewById(R.id.groups);
 
-       callBtn.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-            new NavigationFragment().showCallFragment(R.id.navigationContainer, getActivity());
-           }
-       });
 
-        favoriteBtn.setOnClickListener(new View.OnClickListener() {
+        View.OnClickListener navigationListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new NavigationFragment().showFavoriteFragment(R.id.navigationContainer, getActivity());
-            }
-        });
+                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                switch (view.getId()) {
+                    case R.id.call :
+                        ft.replace(R.id.navigationContainer, new CallFragment());
+                        break;
+                    case R.id.favorite:
+                        ft.replace(R.id.navigationContainer, new FavoriteFragment());
+                        break;
+                    case R.id.groups:
+                        ft.replace(R.id.navigationContainer, new GroupFragment());
+                        break;
 
-        groupBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new NavigationFragment().showGroupFragment(R.id.navigationContainer, getActivity());
+                }
+                ft.commit();
             }
-        });
+        };
+        callBtn.setOnClickListener(navigationListener);
+        favoriteBtn.setOnClickListener(navigationListener);
+        groupBtn.setOnClickListener(navigationListener);
+
         return view;
 
     }
 
-    public void showNavigationFragment(int resId, FragmentActivity activity){
-        navigationFragment = new NavigationFragment();
-        FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
-        ft.replace(resId, navigationFragment);
-        ft.commit();
-    }
-
-    public void showCallFragment(int resId, FragmentActivity parentFragment){
-        FragmentTransaction ft = parentFragment.getSupportFragmentManager().beginTransaction();
-        ft.replace(resId, new CallFragment());
-        ft.commit();
-    }
-
-    public void showFavoriteFragment(int resId, FragmentActivity parentFragment){
-        FragmentTransaction ft = parentFragment.getSupportFragmentManager().beginTransaction();
-        ft.replace(resId, new FavoriteFragment());
-        ft.commit();
-    }
-
-    public void showGroupFragment(int resId, FragmentActivity parentFragment){
-        FragmentTransaction ft = parentFragment.getSupportFragmentManager().beginTransaction();
-        ft.replace(resId, new GroupFragment());
-        ft.commit();
-    }
 
 }

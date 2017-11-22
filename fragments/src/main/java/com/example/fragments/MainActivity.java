@@ -15,10 +15,13 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
        navigationFragment = new NavigationFragment();
+        FragmentTransaction ft = this.getSupportFragmentManager().beginTransaction();
+        ft.add(R.id.fragmentContainers, navigationFragment);
+        ft.commit();
 
 
-       navigationFragment.showNavigationFragment(R.id.fragmentContainers , this);
-    }
 
+}
 }

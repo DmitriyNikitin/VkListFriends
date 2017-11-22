@@ -21,7 +21,7 @@ public class AllContactFragment extends Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.all_contact_fragment, null);
+        View view = inflater.inflate(R.layout.all_contact_fragment, container, false);
 
         RealmManager realmManager = new RealmManager();
         realmManager.getContact();

@@ -33,7 +33,7 @@ public class NavigationFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                FragmentTransaction ft = getChildFragmentManager().beginTransaction();
 
                 switch(view.getId()){
                     case R.id.addNewContacntBtn:

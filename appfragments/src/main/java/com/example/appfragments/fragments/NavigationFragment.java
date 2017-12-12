@@ -20,6 +20,16 @@ public class NavigationFragment extends Fragment {
     Button addNewContactBtn;
     Button allContactBtn;
 
+    AddNewContactFragment addNewContactFragment;
+    AllContactFragment allContactFragment;
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+
+    }
 
     @Nullable
     @Override
@@ -29,6 +39,10 @@ public class NavigationFragment extends Fragment {
         addNewContactBtn = (Button) view.findViewById(R.id.addNewContacntBtn);
         allContactBtn = (Button) view.findViewById(R.id.allContactsBtn);
 
+        addNewContactFragment = new AddNewContactFragment();
+        allContactFragment = new AllContactFragment();
+
+
         View.OnClickListener btnListener = new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -37,12 +51,20 @@ public class NavigationFragment extends Fragment {
 
                 switch(view.getId()){
                     case R.id.addNewContacntBtn:
-                        ft.replace(R.id.navigationConteiner, new AddNewContactFragment());
+                        if(!addNewContactFragment.isAdded()) {
+                            ft.replace(R.id.navigationConteiner, addNewContactFragment);
+                        }
+                           ft.remove(allContactFragment);
+
                         break;
 
                     case R.id.allContactsBtn:
-                        ft.replace(R.id.navigationConteiner, new AllContactFragment());
-                        break;
+                        if(!allContactFragment.isAdded()) {
+                            ft.replace(R.id.navigationConteiner, allContactFragment);
+                        }
+                            ft.remove(addNewContactFragment);
+
+
                 }
                 ft.commit();
             }
@@ -52,5 +74,18 @@ public class NavigationFragment extends Fragment {
         allContactBtn.setOnClickListener(btnListener);
 
         return view;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+
     }
 }

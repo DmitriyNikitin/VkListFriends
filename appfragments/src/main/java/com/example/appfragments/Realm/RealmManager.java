@@ -56,4 +56,20 @@ public class RealmManager {
         realm.commitTransaction();
         return allContacts;
     }
+
+    public void deleteContacnt(int position){
+        realm = Realm.getDefaultInstance();
+
+        realm.beginTransaction();
+            RealmResults<ContactModel> realmResults = realm.where(ContactModel.class).findAll();
+
+        if(realmResults.size() != 0){
+            realmResults.deleteFromRealm(position);
+        }
+
+        realm.commitTransaction();
+
+
+
+    }
 }
